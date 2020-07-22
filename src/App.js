@@ -26,11 +26,17 @@ class App extends Component{
   //    and adding the data received to the state which was an empty array*/
   //   this.setState({users: res.data,loading: false});
     
-  //   console.log(res.data);
+  //   // console.log(res.data);
   // }
 
-  searchUsers =text=>{
-    console.log('HEllo activated')
+  searchUsers = async text=> {
+    this.setState({ loading: true});
+    
+    const res = await axios
+    .get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&
+    client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+    this.setState({users: res.data.items,loading: false});
+console.log(text)
         };
 
   render(){

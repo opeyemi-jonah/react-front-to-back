@@ -12,8 +12,7 @@ class Search extends Component {
     onChange =(e)=> this.setState({ [e.target.name]: e.target.value});
     
     onSubmit =(e)=> {
-        // e.preventDefault();
-        console.log("this.state.text");
+        e.preventDefault();
         this.props.searchUsers(this.state.text);
         this.setState({text: ''})
 
@@ -22,7 +21,7 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <form className ="form">
+                <form className ="form" onSubmit={this.onSubmit}>
                     <input onChange={this.onChange}
                     type= "text" 
                     name = "text" 
@@ -31,7 +30,6 @@ class Search extends Component {
                       />
 
                     <input 
-                    onSubmit={this.onSubmit}
                     type = "submit" 
                     value="Search"
                     className='btn btn-dark btn-block'/>
